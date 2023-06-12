@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Temporizador estilo pomodoro" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Focus Timer 2</title>
+
+    <script src="./js/index.js" defer type="module"></script>
+  </head>
+  <body>
+    <div class="container">
+      <main>
+        <section id="timer">
+          <div class="clock-display-wrapper">
+            <span class="minutes">25</span>
+            <span>:</span>
+            <span class="seconds">00</span>
+          </div>
+          <div id="controls">
+            <button class="play">
+              <img 
+                src="./assets/images/buttonPlay.svg"
+                alt="botão de iniciar o áudio"
+              />
+            </button>
+  
+            <button class="stop">
+              <img 
+                src="./assets/images/buttonStop.svg"
+                alt="botão de parar o áudio"
+              />
+              </svg>
+            </button>
+  
+            <button class="add-5-minutes">
+              <img 
+                src="./assets/images/buttonAdd.svg"
+                alt="botão de acrescentar 5 minutos no tempo"
+              />
+            </button>
+  
+            <button class="sub-5-minutes">
+              <img 
+                src="./assets/images/buttonSub.svg"
+                alt="botão de diminuir 5 minutos no tempo"
+              />
+              </svg>
+            </button>
+          </div>
+        </section>
+        <section class="background-sounds-wrapper">
+          
+          <div class="sound-container active">
+            <button class="forest">
+              <img 
+                src="./assets/images/backgroundSoundForest.svg"
+                alt="desenho uma árvore"
+              />
+            </button>
+          </div>
+
+          <div class="sound-container">
+            <button class="rain">
+              <img 
+                src="./assets/images/backgroundSoundRain.svg"
+                alt="desenho uma nuvem caindo gotículas de água"
+              />
+            </button>
+          </div>
+
+          <div class="sound-container">
+            <button class="cafe">
+              <img 
+                src="./assets/images/backgroundSoundCafe.svg"
+                alt="desenho de uma fachada de uma cafeteria"
+              />
+            </button>
+          </div>
+
+          <div class="sound-container">
+            <button class="fireplace">
+              <img 
+                src="./assets/images/backgroundSoundFireplace.svg"
+                alt="Fogo ardendo em uma lareira aconchegante"
+              />
+            </button>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </body>
+</html>

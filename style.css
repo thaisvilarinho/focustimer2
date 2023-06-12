@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+  --bg-color: #ffffff;
+
+  --bg-sound-button-inactive-color: #e1e1e6;
+  --bg-sound-button-active-color: #02799d;
+
+  --text-color: #323238;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+  font-family: "Roboto", sans-serif;
+
+  display: grid;
+  min-height: 100vh;
+}
+
+.container {
+  align-self: center;
+  justify-self: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.2rem, 4vw, 19.2rem);
+  align-items: center;
+}
+
+#timer .clock-display-wrapper {
+  font-size: 8.62rem;
+  font-weight: 500;
+  color: var(--text-color);
+
+  display: flex;
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 4rem);
+}
+
+#controls button img {
+  width: 80%;
+}
+
+.background-sounds-wrapper {
+  width: 100%;
+  gap: clamp(2rem, 2vw ,3.2rem);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-content: space-around;
+  justify-items: center;
+}
+
+.sound-container {
+  width: 8.8rem;
+  height: 10.2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 2.4rem;
+  background: var(--bg-sound-button-inactive-color);
+}
+
+.background-sounds-wrapper button img {
+  width: 60%;
+}
+
+.active {
+  background: var(--bg-sound-button-active-color);
+}
+
+.active button img {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg);
+}
+
+@media (min-width: 1024px) {
+  main {
+    flex-direction: row;
+  }
+
+  #timer .clock-display-wrapper {
+    font-size: 12.62rem;
+    line-height: 14.8rem;
+
+    margin-bottom: 1.7rem;
+  }
+
+  #controls button img {
+    width: 100%;
+  }
+
+
+  .background-sounds-wrapper {
+    height: 33.6rem;
+  }
+
+  .sound-container {
+    width: 13.8rem;
+    height: 15.2rem;
+  }
+
+  .background-sounds-wrapper button img {
+    width: 100%;
+  }
+}
