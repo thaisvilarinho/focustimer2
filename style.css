@@ -7,26 +7,21 @@
 :root {
   font-size: 62.5%;
   --bg-color: #ffffff;
-
   --bg-sound-button-inactive-color: #e1e1e6;
   --bg-sound-button-active-color: #02799d;
-
   --text-color: #323238;
 }
 
 button {
   background-color: transparent;
   border: none;
-
   cursor: pointer;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-
   font-family: "Roboto", sans-serif;
-
   display: grid;
   min-height: 100vh;
 }
@@ -39,7 +34,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  gap: clamp(2.2rem, 4vw, 19.2rem);
+  gap: 2.2rem;
   align-items: center;
 }
 
@@ -47,7 +42,6 @@ main {
   font-size: 8.62rem;
   font-weight: 500;
   color: var(--text-color);
-
   display: flex;
 }
 
@@ -57,14 +51,21 @@ main {
   gap: clamp(1rem, 2vw, 4rem);
 }
 
+#controls button:disabled {
+  cursor: not-allowed;
+}
+
+#controls button:disabled img {
+  filter: invert(100%) sepia(100%) saturate(0%) brightness(60%);
+}
+
 #controls button img {
   width: 80%;
 }
 
-.background-sounds-wrapper {
+.sounds-wrapper {
   width: 100%;
-  gap: clamp(2rem, 2vw ,3.2rem);
-
+  gap: clamp(2rem, 2vw, 3.2rem);
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
@@ -72,20 +73,26 @@ main {
   justify-items: center;
 }
 
-.sound-container {
+.sound-button {
   width: 8.8rem;
   height: 10.2rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 2.4rem;
-  background: var(--bg-sound-button-inactive-color);
+  background-color: var(--bg-sound-button-inactive-color);
 }
 
-.background-sounds-wrapper button img {
-  width: 60%;
+.sound-button img {
+  width: 30%;
+}
+
+.sound-button.active {
+  background-color: var(--bg-sound-button-active-color);
+}
+
+.sound-button.active img {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg);
 }
 
 .active {
@@ -99,12 +106,12 @@ main {
 @media (min-width: 1024px) {
   main {
     flex-direction: row;
+    gap: 19.2rem;
   }
 
   #timer .clock-display-wrapper {
     font-size: 12.62rem;
     line-height: 14.8rem;
-
     margin-bottom: 1.7rem;
   }
 
@@ -112,17 +119,16 @@ main {
     width: 100%;
   }
 
-
-  .background-sounds-wrapper {
+  .sounds-wrapper {
     height: 33.6rem;
   }
 
-  .sound-container {
+  .sound-button {
     width: 13.8rem;
     height: 15.2rem;
   }
 
-  .background-sounds-wrapper button img {
-    width: 100%;
+  .sounds-wrapper button img {
+    width: auto;
   }
 }
