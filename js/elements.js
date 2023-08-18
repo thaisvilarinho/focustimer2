@@ -1,23 +1,21 @@
+//DOM
+// Document Object Model (direcionada para event-driven)
 const buttonPlay = document.querySelector(".play");
+const buttonPause = document.querySelector(".pause");
 const buttonStop = document.querySelector(".stop");
-const buttonIncrementMinutes = document.querySelector(".increment-minutes");
-const buttonDecrementMinutes = document.querySelector(".decrement-minutes");
-const soundButtonForest = document.querySelector(".sound-button.forest");
-const soundButtonRain = document.querySelector(".sound-button.rain");
-const soundButtonCafe = document.querySelector(".sound-button.cafe");
-const soundButtonFireplace = document.querySelector(".sound-button.fireplace");
+const buttonSet = document.querySelector(".set");
+const buttonSoundOn = document.querySelector(".sound-on");
+const buttonSoundOff = document.querySelector(".sound-off");
 const minutesDisplay = document.querySelector(".minutes");
 const secondsDisplay = document.querySelector(".seconds");
 
 export {
+  buttonPlay,
+  buttonPause,
+  buttonStop,
+  buttonSet,
+  buttonSoundOn,
+  buttonSoundOff,
   minutesDisplay,
   secondsDisplay,
-  buttonPlay,
-  buttonStop,
-  buttonIncrementMinutes,
-  buttonDecrementMinutes,
-  soundButtonForest,
-  soundButtonRain,
-  soundButtonCafe,
-  soundButtonFireplace
-}
+};

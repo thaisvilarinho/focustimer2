@@ -5,130 +5,81 @@
 }
 
 :root {
-  font-size: 62.5%;
-  --bg-color: #ffffff;
-  --bg-sound-button-inactive-color: #e1e1e6;
-  --bg-sound-button-active-color: #02799d;
-  --text-color: #323238;
-}
+  --bg-color: #121214;
 
-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+  --base-color: 194;
+  --bg-primary-light: hsla(var(--base-color), 100%, 63%, 0.13);
+  --primary-color: hsl(var(--base-color), 100%, 63%);
+
+  --text-color: #FFFFFF;
+
+  font-size: 62.5%;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: "Roboto", sans-serif;
+
+  font-family: 'Roboto', sans-serif;
+
   display: grid;
   min-height: 100vh;
 }
 
-.container {
-  align-self: center;
+button {
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.play svg path,
+.pause svg path,
+.sound-on svg path {
+  fill: var(--primary-color);
+}
+
+button svg {
+  width: clamp(3.2rem, 2rem + 12vw, 6.4rem);
+}
+
+/*
+  como usamos display grid no componente pai do main (body) 
+  agora podemos usar as propriedades de align-self e justify-self
+*/
+main {
+  align-self: end;
   justify-self: center;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 2.2rem;
-  align-items: center;
-}
+#timer {
+  font-size: clamp(4rem, 4rem + 10vw, 8.8rem);
 
-#timer .clock-display-wrapper {
-  font-size: 8.62rem;
-  font-weight: 500;
-  color: var(--text-color);
   display: flex;
+  margin-bottom: 1.6rem;
 }
 
 #controls {
-  display: flex;
-  justify-content: center;
-  gap: clamp(1rem, 2vw, 4rem);
-}
+  background-color: var(--bg-primary-light);
 
-#controls button:disabled {
-  cursor: not-allowed;
-}
-
-#controls button:disabled img {
-  filter: invert(100%) sepia(100%) saturate(0%) brightness(60%);
-}
-
-#controls button img {
-  width: 80%;
-}
-
-.sounds-wrapper {
-  width: 100%;
-  gap: clamp(2rem, 2vw, 3.2rem);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: space-between;
-  align-content: space-around;
-  justify-items: center;
-}
-
-.sound-button {
-  width: 8.8rem;
-  height: 10.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 2.4rem;
-  background-color: var(--bg-sound-button-inactive-color);
+  gap: 3.2rem;
+
+  border-radius: 9999px; // deixa arrendodado no formato de uma pípula
+
+  width: clamp(10rem, 10rem + 30vw, 22.8rem);
+  height: clamp(8rem, 5rem + 10vw, 10.8rem)
 }
 
-.sound-button img {
-  width: 30%;
-}
+footer {
+  align-self: end;
+  justify-self: end;
 
-.sound-button.active {
-  background-color: var(--bg-sound-button-active-color);
-}
-
-.sound-button.active img {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg);
-}
-
-.active {
-  background: var(--bg-sound-button-active-color);
-}
-
-.active button img {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg);
-}
-
-@media (min-width: 1024px) {
-  main {
-    flex-direction: row;
-    gap: 19.2rem;
-  }
-
-  #timer .clock-display-wrapper {
-    font-size: 12.62rem;
-    line-height: 14.8rem;
-    margin-bottom: 1.7rem;
-  }
-
-  #controls button img {
-    width: 100%;
-  }
-
-  .sounds-wrapper {
-    height: 33.6rem;
-  }
-
-  .sound-button {
-    width: 13.8rem;
-    height: 15.2rem;
-  }
-
-  .sounds-wrapper button img {
-    width: auto;
-  }
+  padding: 0 4rem 3.2rem 0;
 }

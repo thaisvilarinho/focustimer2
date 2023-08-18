@@ -1,9 +1,14 @@
 import Sounds from "./sounds.js";
 
-export default function Timer({ minutesDisplay, secondsDisplay, controls }) {
+export default function Timer({
+  minutesDisplay,
+  secondsDisplay,
+  resetControls,
+}) {
   let idTimerTimeOut;
   let minutes = Number(minutesDisplay.textContent);
 
+  //falsy : 0 , ""
   function updateDisplay(newMinutes, seconds) {
     newMinutes = newMinutes === undefined ? minutes : newMinutes;
     seconds = seconds === undefined ? 0 : seconds;
@@ -11,10 +16,7 @@ export default function Timer({ minutesDisplay, secondsDisplay, controls }) {
     secondsDisplay.textContent = String(seconds).padStart(2, "0");
   }
 
-  function reset(isFinished) {
-    if(isFinished){
-      minutes = 25;
-    }
+  function reset() {
     updateDisplay(minutes, 0);
     clearTimeout(idTimerTimeOut);
   }
@@ -28,9 +30,9 @@ export default function Timer({ minutesDisplay, secondsDisplay, controls }) {
       updateDisplay(minutes, 0);
 
       if (isFinished) {
-        reset(isFinished);
-        Sounds().timeOut();
-        controls.updateButtonState('reset');
+        resetControls();
+        updateDisplay();
+        Sounds().timeEnd();
         return;
       }
 
@@ -44,28 +46,28 @@ export default function Timer({ minutesDisplay, secondsDisplay, controls }) {
     }, 1000);
   }
 
-  function incrementMinutes(increment) {
-    minutes += increment;
-  }
-
-  function decrementMinutes(decrement) {
-    if (minutes <= 0) {
-      controls.updateButtonState('decrementMinutesReachedLimit');
-      return;
-    }
-    minutes -= decrement;
+  function setMinutes(newMinutes) {
+    minutes = newMinutes;
   }
 
   function getMinutes() {
-    return minutes;
+    let newMinutes = prompt("Quantos minutos?");
+    if (!newMinutes) {
+      return false;
+    }
+    return newMinutes;
+  }
+
+  function hold() {
+    clearTimeout(idTimerTimeOut);
   }
 
   return {
     countDown,
     reset,
     updateDisplay,
+    setMinutes,
     getMinutes,
-    incrementMinutes,
-    decrementMinutes
+    hold,
   };
 }

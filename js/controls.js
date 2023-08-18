@@ -1,33 +1,31 @@
-export default function Controls({ buttonPlay, buttonStop, buttonDecrementMinutes }) {
-
-  function toggleButtonStates() {
-    buttonPlay.disabled = !buttonPlay.disabled;
-    buttonStop.disabled = !buttonStop.disabled;
+export default function Controls({
+  buttonPlay,
+  buttonPause,
+  buttonStop,
+  buttonSet
+}) {
+  function play() {
+    buttonPlay.classList.add("hide");
+    buttonPause.classList.remove("hide");
+    buttonSet.classList.add("hide");
+    buttonStop.classList.remove("hide");
   }
 
-  function updateButtonState(action) {
-    switch (action) {
-      case "buttonPlayPressed":
-      case "buttonStopPressed":
-        buttonDecrementMinutes.disabled = false;
-        toggleButtonStates();
-        break;
-      case "decrementMinutesReachedLimit":
-        buttonDecrementMinutes.disabled = true;
-        buttonPlay.disabled = false;
-        buttonStop.disabled = true;
-        break;
-      case "reset":
-        buttonDecrementMinutes.disabled = false;
-        buttonPlay.disabled = false;
-        buttonStop.disabled = true;
-        break;
-      default:
-        break;
-    }
+  function pause() {
+    buttonPause.classList.add("hide");
+    buttonPlay.classList.remove("hide");
+  }
+
+  function reset() {
+    buttonPlay.classList.remove("hide");
+    buttonPause.classList.add("hide");
+    buttonSet.classList.remove("hide");
+    buttonStop.classList.add("hide");
   }
 
   return {
-    updateButtonState,
+    reset,
+    play,
+    pause
   };
 }

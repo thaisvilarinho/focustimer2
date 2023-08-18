@@ -1,78 +1,51 @@
 import {
   buttonPlay,
+  buttonPause,
   buttonStop,
-  buttonIncrementMinutes,
-  buttonDecrementMinutes,
-  soundButtonForest,
-  soundButtonRain,
-  soundButtonCafe,
-  soundButtonFireplace,  
+  buttonSet,
+  buttonSoundOn,
+  buttonSoundOff,
 } from "./elements.js";
 
-export default function ({ sounds, timer, controls }) {
+export default function ({ controls, timer, sounds }) {
   buttonPlay.addEventListener("click", function () {
-    controls.updateButtonState("buttonPlayPressed");
-    sounds.pressButton();
+    controls.play();
     timer.countDown();
+    sounds.pressButton();
+  });
+
+  buttonPause.addEventListener("click", function () {
+    controls.pause();
+    timer.hold();
+    sounds.pressButton();
   });
 
   buttonStop.addEventListener("click", function () {
-    controls.updateButtonState("buttonPlayPressed");
-    sounds.pressButton();
+    controls.reset();
     timer.reset();
-  });
-
-  buttonIncrementMinutes.addEventListener("click", function () {
     sounds.pressButton();
-    timer.incrementMinutes(5);
-    const minutesUpdated = timer.getMinutes();
-    timer.updateDisplay(minutesUpdated);
   });
 
-  buttonDecrementMinutes.addEventListener("click", function () {
-    sounds.pressButton();
-    timer.decrementMinutes(5);
-    const minutesUpdated = timer.getMinutes();
-    timer.updateDisplay(minutesUpdated);
+  buttonSoundOff.addEventListener("click", function () {
+    buttonSoundOn.classList.remove("hide");
+    buttonSoundOff.classList.add("hide");
+    sounds.bgAudio.play();
+    
   });
 
-  soundButtonForest.addEventListener("click", function () {
-    if (soundButtonForest.classList.contains("active")) {
-      soundButtonForest.classList.remove("active");
-      sounds.pause('forest');
+  buttonSoundOn.addEventListener("click", function () {
+    buttonSoundOff.classList.remove("hide");
+    buttonSoundOn.classList.add("hide");
+    sounds.bgAudio.pause();
+  });
+
+  buttonSet.addEventListener("click", function () {
+    let newMinutes = timer.getMinutes();
+    if (!newMinutes) {
+      timer.reset();
       return;
     }
-    soundButtonForest.classList.add("active");
-    sounds.play('forest');
-  });
-
-  soundButtonRain.addEventListener("click", function () {
-    if (soundButtonRain.classList.contains("active")) {
-      soundButtonRain.classList.remove("active");
-      sounds.pause('rain');
-      return;
-    }
-    soundButtonRain.classList.add("active");
-    sounds.play('rain');
-  });
-
-  soundButtonCafe.addEventListener("click", function () {
-    if (soundButtonCafe.classList.contains("active")) {
-      soundButtonCafe.classList.remove("active");
-      sounds.pause('cafe');
-      return;
-    }
-    soundButtonCafe.classList.add("active");
-    sounds.play('cafe');
-  });
-
-  soundButtonFireplace.addEventListener("click", function () {
-    if (soundButtonFireplace.classList.contains("active")) {
-      soundButtonFireplace.classList.remove("active");
-      sounds.pause('fireplace');
-      return;
-    }
-    soundButtonFireplace.classList.add("active");
-    sounds.play('fireplace');
+    timer.updateDisplay(newMinutes, 0);
+    timer.setMinutes(newMinutes);
   });
 }

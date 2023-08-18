@@ -1,24 +1,34 @@
-import Sounds from "./sounds.js";
-import Events from "./events.js";
-import Timer from "./timer.js";
 import Controls from "./controls.js";
-
-import {
+import Sounds from './sounds.js';
+import Timer from "./timer.js";
+import Events from "./events.js";
+import { 
   buttonPlay,
+  buttonPause,
   buttonStop,
-  buttonDecrementMinutes,
+  buttonSet,
+  buttonSoundOn,
+  buttonSoundOff,
   minutesDisplay,
-  secondsDisplay,
-} from "./elements.js";
+  secondsDisplay
+ } from "./elements.js";
+
 
 const controls = Controls({
   buttonPlay,
+  buttonPause,
   buttonStop,
-  buttonDecrementMinutes,
+  buttonSet,
+  buttonSoundOn,
+  buttonSoundOff,
 });
 
-const timer = new Timer({ minutesDisplay, secondsDisplay, controls });
+const timer = Timer({
+  minutesDisplay,
+  secondsDisplay,
+  resetControls: controls.reset,
+});
 
 const sounds = Sounds();
 
-Events({ sounds, timer, controls });
+Events({controls, timer, sounds});
